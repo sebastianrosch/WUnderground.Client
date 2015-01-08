@@ -194,4 +194,4 @@ FakesAssemblies/
 *.opt
 
 # AppSettings
-*.config
+#*.config
