@@ -21,7 +21,7 @@ namespace WUnderground.Client
         /// <param name="lat">The latitude</param>
         /// <param name="lng">The longitude</param>
         /// <returns>The response object</returns>
-        public async Task<Response> GetConditionsForLocation(double lat, double lng)
+        public static async Task<Response> GetConditionsForLocation(double lat, double lng)
         {
             string uri = string.Format(GeolookupAndCurrentConditionsUri, Config.ApiKey, lat, lng);
 
@@ -48,7 +48,7 @@ namespace WUnderground.Client
         /// <param name="lat">The latitude</param>
         /// <param name="lng">The longitude</param>
         /// <returns>The response object</returns>
-        public async Task<Response> GetConditionsAndForecastForLocation(double lat, double lng)
+        public static async Task<Response> GetConditionsAndForecastForLocation(double lat, double lng)
         {
             string uri = string.Format(GeolookupCurrentConditionsAndForecastUri, Config.ApiKey, lat, lng);
 
