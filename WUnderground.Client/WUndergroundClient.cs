@@ -21,7 +21,7 @@ namespace WUnderground.Client
         /// <param name="lat">The latitude</param>
         /// <param name="lng">The longitude</param>
         /// <returns>The response object</returns>
-        public static async Task<Response> GetConditionsForLocation(double lat, double lng)
+        public static async Task<WeatherResponse> GetConditionsForLocationAsync(double lat, double lng)
         {
             string uri = string.Format(GeolookupAndCurrentConditionsUri, Config.ApiKey, lat, lng);
 
@@ -31,7 +31,7 @@ namespace WUnderground.Client
                 if (response.IsSuccessStatusCode)
                 {
                     var content = response.Content.ReadAsStringAsync().Result;
-                    Response weatherResponse = JsonConvert.DeserializeObject<Response>(content);
+                    WeatherResponse weatherResponse = JsonConvert.DeserializeObject<WeatherResponse>(content);
 
                     if (weatherResponse.response.error != null)
                         throw new WUndergroundException(weatherResponse.response.error.description);
@@ -48,7 +48,7 @@ namespace WUnderground.Client
         /// <param name="lat">The latitude</param>
         /// <param name="lng">The longitude</param>
         /// <returns>The response object</returns>
-        public static async Task<Response> GetConditionsAndForecastForLocation(double lat, double lng)
+        public static async Task<WeatherResponse> GetConditionsAndForecastForLocationAsync(double lat, double lng)
         {
             string uri = string.Format(GeolookupCurrentConditionsAndForecastUri, Config.ApiKey, lat, lng);
 
@@ -58,7 +58,7 @@ namespace WUnderground.Client
                 if (response.IsSuccessStatusCode)
                 {
                     var content = response.Content.ReadAsStringAsync().Result;
-                    Response weatherResponse = JsonConvert.DeserializeObject<Response>(content);
+                    WeatherResponse weatherResponse = JsonConvert.DeserializeObject<WeatherResponse>(content);
 
                     return weatherResponse;
                 }
@@ -78,8 +78,15 @@ namespace WUnderground.Client
         }
     }
 
+    /// <summary>
+    /// An exception thrown by the WUnderground service
+    /// </summary>
     public class WUndergroundException : Exception
     {
+        /// <summary>
+        /// Creates a new WUnderground exception with the specified message
+        /// </summary>
+        /// <param name="message">The message</param>
         public WUndergroundException(string message) : base(message) { }
     }
 }

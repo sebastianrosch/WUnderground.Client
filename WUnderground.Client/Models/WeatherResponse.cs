@@ -330,7 +330,7 @@ namespace WUnderground.Client.Models
         public Simpleforecast simpleforecast { get; set; }
     }
 
-    public class Response
+    public class WeatherResponse
     {
         public ResponseMetadata response { get; set; }
         public Location location { get; set; }
