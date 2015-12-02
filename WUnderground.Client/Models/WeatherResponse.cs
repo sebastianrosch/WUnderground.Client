@@ -270,12 +270,12 @@ namespace WUnderground.Client.Models
     {
         public string epoch { get; set; }
         public string pretty { get; set; }
-        public int day { get; set; }
-        public int month { get; set; }
+        public int mday { get; set; }
+        public int mon { get; set; }
         public int year { get; set; }
         public int yday { get; set; }
         public int hour { get; set; }
-        public string min { get; set; }
+        public int min { get; set; }
         public int sec { get; set; }
         public string isdst { get; set; }
         public string monthname { get; set; }
@@ -337,5 +337,129 @@ namespace WUnderground.Client.Models
         public CurrentObservation current_observation { get; set; }
         public Forecast forecast { get; set; }
         public List<HourlyForecast> hourly_forecast { get; set; }
+        public History history { get; set; }
+    }
+
+    public class History
+    {
+        public Date date { get; set; }
+        public Date utcdate { get; set; }
+        public List<Observation> observations { get; set; }
+        public List<DailySummary> dailysummary { get; set; }
+    }
+
+    public class Observation
+    {
+        public Date date { get; set; }
+        public Date utcdate { get; set; }
+        public double? tempm { get; set; }
+        public double? tempi { get; set; }
+        public double? dewptm { get; set; }
+        public double? dewpti { get; set; }
+        public int hum { get; set; }
+        public double? wspdm { get; set; }
+        public double? wspdi { get; set; }
+        public double? wgustm { get; set; }
+        public double? wgusti { get; set; }
+        public int wdird { get; set; }
+        public string wdire { get; set; }
+        public double? vism { get; set; }
+        public double? visi { get; set; }
+        public double? pressurem { get; set; }
+        public double? pressurei { get; set; }
+        public double? windchillm { get; set; }
+        public double? windchilli { get; set; }
+        public double? heatindexm { get; set; }
+        public double? heatindexi { get; set; }
+        public double? precipm { get; set; }
+        public double? precipi { get; set; }
+        public string conds { get; set; }
+        public string icon { get; set; }
+        public int fog { get; set; }
+        public int rain { get; set; }
+        public int snow { get; set; }
+        public int hail { get; set; }
+        public int thunder { get; set; }
+        public int tornado { get; set; }
+        public string metar { get; set; }
+
+        public DateTime dateTime
+        {
+            get { return new DateTime(utcdate.year, utcdate.mon, utcdate.mday, utcdate.hour, utcdate.min,utcdate.sec); }
+        }
+    }
+
+    public class DailySummary
+    {
+        public Date date { get; set; }
+        public int fog { get; set; }
+        public int rain { get; set; }
+        public int snow { get; set; }
+        public double? snowfallm { get; set; }
+        public double? snowfalli { get; set; }
+        public double? monthtodatesnowfallm { get; set; }
+        public double? monthtodatesnowfalli { get; set; }
+        public double? since1julsnowfallm { get; set; }
+        public double? since1julsnowfalli { get; set; }
+        public double? snowdepthm { get; set; }
+        public double? snowdepthi { get; set; }
+        public int hail { get; set; }
+        public int thunder { get; set; }
+        public int tornado { get; set; }
+        public double? meantempm { get; set; }
+        public double? meantempi { get; set; }
+        public double? meandewptm { get; set; }
+        public double? meandewpti { get; set; }
+        public double? meanpressurem { get; set; }
+        public double? meanpressurei { get; set; }
+        public double? meanwindspdm { get; set; }
+        public double? meanwindspdi { get; set; }
+        public string meanwdire { get; set; }
+        public double? meanwdird { get; set; }
+        public double? meanvism { get; set; }
+        public double? meanvisi { get; set; }
+        public double? humidity { get; set; }
+        public double? maxtempm { get; set; }
+        public double? maxtempi { get; set; }
+        public double? mintempm { get; set; }
+        public double? mintempi { get; set; }
+        public double? maxhumidity { get; set; }
+        public double? minhumidity { get; set; }
+        public double? maxdewptm { get; set; }
+        public double? maxdewpti { get; set; }
+        public double? mindewptm { get; set; }
+        public double? mindewpti { get; set; }
+        public double? maxpressurem { get; set; }
+        public double? maxpressurei { get; set; }
+        public double? minpressurem { get; set; }
+        public double? minpressurei { get; set; }
+        public double? maxwspdm { get; set; }
+        public double? maxwspdi { get; set; }
+        public double? minwspdm { get; set; }
+        public double? minwspdi { get; set; }
+        public double? maxvism { get; set; }
+        public double? maxvisi { get; set; }
+        public double? minvism { get; set; }
+        public double? minvisi { get; set; }
+        public double? gdegreedays { get; set; }
+        public double? heatingdegreedays { get; set; }
+        public double? coolingdegreedays { get; set; }
+        public double? precipm { get; set; }
+        public double? precipi { get; set; }
+        public string precipsource { get; set; }
+        public int? heatingdegreedaysnormal { get; set; }
+        public int? monthtodateheatingdegreedays { get; set; }
+        public int? monthtodateheatingdegreedaysnormal { get; set; }
+        public int? since1sepheatingdegreedays { get; set; }
+        public int? since1sepheatingdegreedaysnormal { get; set; }
+        public int? since1julheatingdegreedays { get; set; }
+        public int? since1julheatingdegreedaysnormal { get; set; }
+        public int? coolingdegreedaysnormal { get; set; }
+        public int? monthtodatecoolingdegreedays { get; set; }
+        public int? monthtodatecoolingdegreedaysnormal { get; set; }
+        public int? since1sepcoolingdegreedays { get; set; }
+        public int? since1sepcoolingdegreedaysnormal { get; set; }
+        public int? since1jancoolingdegreedays { get; set; }
+        public int? since1jancoolingdegreedaysnormal { get; set; }
     }
 }
